@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private Camera viewCamera;
+    [SerializeField] private Camera drawCamera;
+    [SerializeField] private Transform mouseFollower;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +18,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        var mousePos = UnityEngine.Input.mousePosition;
+        mouseFollower.position = Camera.main.ScreenPointToRay(mousePos).GetPoint(5);
     }
 }
