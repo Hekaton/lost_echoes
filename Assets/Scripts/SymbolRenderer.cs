@@ -38,6 +38,6 @@ public class SymbolRenderer : MonoBehaviour
     }
     
     private float[] colorToGrayscale(Color[] colors){
-        return colors.Select(c => c.grayscale < 0.5f ? 1f : 0f).ToArray();
+        return colors.Select(c => c.grayscale < 0.85f ? 1f : 0f).ToArray();
     }
 }

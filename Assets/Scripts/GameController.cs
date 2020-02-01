@@ -7,13 +7,14 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private SymbolRenderer symbolRenderer;
-    
+    Texture2D currentStrokeTexture;
     public void GotToScene(int scene){
         SceneManager.LoadScene(scene);
     }
     
     void Start(){
         SymbolRenderer.dataRendered += FinalizeSymbol_step2;
+        currentStrokeTexture = new Texture2D(32, 32, TextureFormat.ARGB32, 0, true);
     }
     
     public void FinalizeSymbol(){
@@ -21,7 +22,7 @@ public class GameController : MonoBehaviour
     }
     
     void FinalizeSymbol_step2(Color[] canvas){
-        Texture2D currentStrokeTexture = new Texture2D(1, 1, TextureFormat.ARGB32, 0, true);
+         
         var result = Grid2DUtil.CompareGrid(
             currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
             canvas
