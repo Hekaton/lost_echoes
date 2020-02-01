@@ -11,6 +11,9 @@ public class SymbolRenderer : MonoBehaviour
     RenderTexture rt;
     private bool isRendering = false;
     
+    public delegate void OnDataRendered(Color[] canvas);
+    public static event OnDataRendered dataRendered;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -22,11 +25,12 @@ public class SymbolRenderer : MonoBehaviour
     }
     
     public void OnPostRender(){
-        Debug.Log("Postrender...");
         if(isRendering){
             isRendering = false;
-            Debug.LogFormat("Got greyscales: {0}", string.Join(" ", colorToGrayscale(GetPixels())));
         }
+        
+        var pixels = GetPixels();
+        dataRendered(pixels);
     }
     
     public Color[] GetPixels(){
