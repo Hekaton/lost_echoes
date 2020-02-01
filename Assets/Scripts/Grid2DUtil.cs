@@ -12,10 +12,7 @@
 
             for (int i = 0; i < array_1.Length; i++)
             {
-                if (array_1[i] == array_2[i])
-                {
-                    matchPixel += 1f;
-                }
+                matchPixel = array_1[i].grayscale - array_2[i].grayscale;
 
                 i++;
             }
