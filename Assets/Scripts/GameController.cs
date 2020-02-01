@@ -19,6 +19,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         var mousePos = UnityEngine.Input.mousePosition;
-        mouseFollower.position = Camera.main.ScreenPointToRay(mousePos).GetPoint(5);
+        mouseFollower.position = drawCamera.ScreenPointToRay(mousePos).GetPoint(5);
     }
 }
