@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private bool countDown = false;
     [SerializeField] private Text[] timerText;
     private float startTime = 0;
+    public float timePerSymbol = 30;
     
     
     public GameObject[] leftSprites;
@@ -67,7 +68,7 @@ public class GameController : MonoBehaviour
             return;
         }
         
-        var remainingTime = 10 + startTime - Time.time;
+        var remainingTime = timePerSymbol + startTime - Time.time;
         if(remainingTime < 0) {
             GotToScene(3);
             gameObject.SetActive(false);
