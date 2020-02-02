@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     
     void Start(){
         SymbolRenderer.dataRendered += FinalizeSymbol_step2;
-        currentStrokeTexture = new Texture2D(32, 32, TextureFormat.ARGB32, 0, true);
+        currentStrokeTexture = symbolDisplayer.currentTexture;
     }
     
     public void FinalizeSymbol(){
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     void FinalizeSymbol_step2(Color[] canvas){
          
         var result = Grid2DUtil.CompareGrid(
-            symbolDisplayer.currentTexture.GetPixels(0, 0, symbolDisplayer.currentTexture.width, symbolDisplayer.currentTexture.height),
+            currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
             canvas
         );
         
