@@ -24,7 +24,8 @@ public class SymbolRenderer : MonoBehaviour
         isRendering = true;
     }
     
-    public void OnPostRender(){
+    public IEnumerator OnPostRender(){
+        yield return new WaitForEndOfFrame();
         if(isRendering){
             isRendering = false;
             var pixels = GetPixels();
