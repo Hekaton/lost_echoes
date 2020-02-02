@@ -11,8 +11,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private SymbolDisplayer symbolDisplayer;
     
     
+    [SerializeField] private bool countDown = false;
     [SerializeField] private Text[] timerText;
-    [SerializeField] private float startTime;
+    private float startTime = 0;
     
     
     [SerializeField] private GameObject[] leftSprites;
@@ -24,18 +25,28 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
     
+    void Start(){
+        startTime = Time.time;
+    }
+    
     void Awake(){
+        startTime = Time.time;
         SymbolRenderer.dataRendered += FinalizeSymbol_step2;
     }
     
     void Update(){
-        
-        var remainingTime = Time.time - startTime;
-        if(remainingTime <= 0) {
-            GotToScene(3);
+        if (!countDown) {
+            return;
         }
         
-        var remainingTimeText = string.Format("{0:00:0}", 100f - Mathf.Floor((remainingTime) * 10f));
+        var remainingTime = 10 + startTime - Time.time;
+        Debug.LogFormat("Remaining time: {0}", remainingTime);
+        if(remainingTime < 0) {
+            GotToScene(3);
+            gameObject.SetActive(false);
+        }
+        
+        var remainingTimeText = string.Format("{0:00:0}", Mathf.Floor((remainingTime) * 10f));
         foreach (var text in timerText)
         {
             text.text = $"{remainingTimeText}";
