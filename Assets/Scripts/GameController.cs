@@ -29,11 +29,16 @@ public class GameController : MonoBehaviour
     }
     
     void Update(){
-        // timerText.Select(v => v.text = $"{Time.time - startTime}");
-        var remainingTime = string.Format("{0:00:0}", 100f - Mathf.Floor((Time.time - startTime) * 10f));
+        
+        var remainingTime = Time.time - startTime;
+        if(remainingTime <= 0) {
+            GotToScene(3);
+        }
+        
+        var remainingTimeText = string.Format("{0:00:0}", 100f - Mathf.Floor((remainingTime) * 10f));
         foreach (var text in timerText)
         {
-            text.text = $"{remainingTime}";
+            text.text = $"{remainingTimeText}";
         }
     }
     
@@ -55,7 +60,8 @@ public class GameController : MonoBehaviour
         rightSprites[currentIndex].GetComponent<Image>().sprite = img;
         
         currentIndex++;
-        startTime = Time.time;
+        var remainingTime = Time.time - startTime;
+        startTime += 10;
         
         
         Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
@@ -64,7 +70,7 @@ public class GameController : MonoBehaviour
     }
     
     public void MainMenu(){
-        // .
+        GotToScene(0);
     }
     public void TogglePause(){
         // .
