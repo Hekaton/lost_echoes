@@ -5,7 +5,7 @@ using System.Linq;
 
 public class SymbolDisplayer : MonoBehaviour
 {
-    
+    public Texture2D currentTexture;
     [SerializeField] Texture2D[] availableSymbols;
     
     
@@ -25,9 +25,10 @@ public class SymbolDisplayer : MonoBehaviour
     public void Next(){
         int newSymbol = availableIndeces[Random.Range(0, availableIndeces.Count())];
         availableIndeces.Remove(newSymbol);        
+        currentTexture = availableSymbols[newSymbol];
         var renderer = GetComponent<Renderer>();
         if(renderer) {
-            renderer.material.SetTexture($"_MainTex", availableSymbols[newSymbol]);
+            renderer.material.SetTexture($"_MainTex", currentTexture);
         }
     }
 

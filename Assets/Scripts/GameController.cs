@@ -7,6 +7,7 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private SymbolRenderer symbolRenderer;
+    [SerializeField] private SymbolDisplayer symbolDisplayer;
     Texture2D currentStrokeTexture;
     public void GotToScene(int scene){
         SceneManager.LoadScene(scene);
@@ -24,7 +25,7 @@ public class GameController : MonoBehaviour
     void FinalizeSymbol_step2(Color[] canvas){
          
         var result = Grid2DUtil.CompareGrid(
-            currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
+            symbolDisplayer.currentTexture.GetPixels(0, 0, symbolDisplayer.currentTexture.width, symbolDisplayer.currentTexture.height),
             canvas
         );
         
