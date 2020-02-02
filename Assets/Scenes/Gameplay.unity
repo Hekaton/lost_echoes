@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   symbolRenderer: {fileID: 1110691041}
+  symbolDisplayer: {fileID: 2080569788}
 --- !u!4 &232730394
 Transform:
   m_ObjectHideFlags: 0
@@ -715,6 +716,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6933409901100897555, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6933409901100897566, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -854,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41b46260a8e71b46b215d5cf15719e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTexture: {fileID: 0}
   availableSymbols:
   - {fileID: 2800000, guid: 1d31d5157715d454a9b7c5487209e4ff, type: 3}
   - {fileID: 2800000, guid: 508e8e94bb88d5347af2711cccb74a8c, type: 3}
