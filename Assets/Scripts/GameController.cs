@@ -16,27 +16,48 @@ public class GameController : MonoBehaviour
     private float startTime = 0;
     
     
-    [SerializeField] private GameObject[] leftSprites;
-    [SerializeField] private GameObject[] rightSprites;
+    public GameObject[] leftSprites;
+    public GameObject[] rightSprites;
+    [SerializeField] private Text[] liveScores;
+    [SerializeField] private Text finalScore;
     
     public static float[] scores = new float[10];
     
     Texture2D currentStrokeTexture;
     int currentIndex = 0;
     public void GotToScene(int scene){
-        SceneManager.LoadScene(scene);
+        SceneManager.UnloadSceneAsync(this.gameObject.scene);
+        SceneManager.LoadSceneAsync(scene);
     }
     
     void Start(){
+        Debug.Log("START!");
+        currentIndex = 0;
         startTime = Time.time;
     }
     
     void Awake(){
+        Debug.LogFormat("AWAKEN! With lists {0}, {1}", leftSprites.Length, rightSprites.Length);
+        currentIndex = 0;
         startTime = Time.time;
-        SymbolRenderer.dataRendered += FinalizeSymbol_step2;
+        if(countDown){
+            SymbolRenderer.dataRendered += FinalizeSymbol_step2;
+        }
     }
     
     void Update(){
+        
+        if(liveScores != null && liveScores.Length > 0) {
+            foreach (var score in liveScores)
+            {
+                score.text = string.Format("{0:00}", scores.Sum());
+            }
+        }
+        
+        if(finalScore != null) {
+            finalScore.text = string.Format("{0:00}", scores.Sum());
+        }
+        
         if (!countDown) {
             return;
         }
@@ -72,6 +93,8 @@ public class GameController : MonoBehaviour
         
         var img = Sprite.Create(currentStrokeTexture, new Rect(0, 0, 1024, 1024), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect);
         
+        Debug.LogFormat("Trying to get index {0} from list of length {1}", currentIndex, leftSprites.Count());
+        
         leftSprites[currentIndex].GetComponent<Image>().sprite = img;
         rightSprites[currentIndex].GetComponent<Image>().sprite = img;
         
@@ -102,7 +125,13 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(seconds);
         Debug.Log("... timer done!!");
+        Time.timeScale = 1;
+        currentIndex = 0;
         GotToScene(4);
+    }
+    
+    void OnDestroy(){
+        SymbolRenderer.dataRendered -= FinalizeSymbol_step2;
     }
 
 }
