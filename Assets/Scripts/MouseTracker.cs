@@ -59,5 +59,7 @@ public class MouseTracker : MonoBehaviour
     public void Undo(){
         GameObject.Destroy(lines.Last());
         lines.RemoveAt(lines.Count() -1);
+        GameObject.Destroy(lines.Last());
+        lines.RemoveAt(lines.Count() -1);
     }
 }
