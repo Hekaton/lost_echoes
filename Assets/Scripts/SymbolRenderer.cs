@@ -6,7 +6,7 @@ using System.Linq;
 [RequireComponent(typeof(Camera))]
 public class SymbolRenderer : MonoBehaviour
 {
-    [SerializeField, Range(2, 256)] private int textureSize = 32;
+    [SerializeField] private int textureSize = 1024;
     Texture2D tex;
     RenderTexture rt;
     private bool isRendering = false;
