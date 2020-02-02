@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
@@ -9,6 +9,11 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private SymbolRenderer symbolRenderer;
     [SerializeField] private SymbolDisplayer symbolDisplayer;
+    
+    
+    [SerializeField] private Text[] timerText;
+    [SerializeField] private float startTime;
+    
     
     [SerializeField] private GameObject[] leftSprites;
     [SerializeField] private GameObject[] rightSprites;
@@ -23,11 +28,20 @@ public class GameController : MonoBehaviour
         SymbolRenderer.dataRendered += FinalizeSymbol_step2;
     }
     
+    void Update(){
+        // timerText.Select(v => v.text = $"{Time.time - startTime}");
+        var remainingTime = string.Format("{0:00:0}", 100f - Mathf.Floor((Time.time - startTime) * 10f));
+        foreach (var text in timerText)
+        {
+            text.text = $"{remainingTime}";
+        }
+    }
+    
     public void FinalizeSymbol(){
         currentStrokeTexture = symbolDisplayer.currentTexture;
         symbolRenderer.GrabTexture(); // will fire async dataRendered event
     }
-    
+        
     void FinalizeSymbol_step2(Color[] canvas){
          
         var result = Grid2DUtil.CompareGrid(
@@ -35,10 +49,24 @@ public class GameController : MonoBehaviour
             canvas
         );
         
-        leftSprites[currentIndex].GetComponent<Image>().image =
-        rightSprites[currentIndex].GetComponent<Image>().image = currentStrokeTexture;
+        var img = Sprite.Create(currentStrokeTexture, new Rect(0, 0, 1024, 1024), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect);
+        
+        leftSprites[currentIndex].GetComponent<Image>().sprite = img;
+        rightSprites[currentIndex].GetComponent<Image>().sprite = img;
+        
+        currentIndex++;
+        startTime = Time.time;
         
         
         Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
+        
+        symbolDisplayer.Next();
+    }
+    
+    public void MainMenu(){
+        // .
+    }
+    public void TogglePause(){
+        // .
     }
 }

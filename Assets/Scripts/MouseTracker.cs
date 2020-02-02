@@ -8,6 +8,7 @@ public class MouseTracker : MonoBehaviour
     [SerializeField] private Camera drawCamera;
     [SerializeField] private Camera renderCamera;
     [SerializeField] private GameObject inkSource;
+    [SerializeField] private GameObject inkCursor;
     
     
     private GameObject currentInk;
@@ -33,6 +34,8 @@ public class MouseTracker : MonoBehaviour
         
         if(isDrawing && currentInk){
             currentInk.transform.position = drawCamera.ScreenPointToRay(mousePos).GetPoint(19);
+        } else {
+            inkCursor.transform.position = drawCamera.ScreenPointToRay(mousePos).GetPoint(19);
         }
         
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -51,5 +54,10 @@ public class MouseTracker : MonoBehaviour
         {
             GameObject.Destroy(line);
         }
+    }
+    
+    public void Undo(){
+        GameObject.Destroy(lines.Last());
+        lines.RemoveAt(lines.Count() -1);
     }
 }
