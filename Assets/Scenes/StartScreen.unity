@@ -1326,6 +1326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbolRenderer: {fileID: 0}
   symbolDisplayer: {fileID: 0}
+  leftSprites: []
+  rightSprites: []
 --- !u!4 &1281413495
 Transform:
   m_ObjectHideFlags: 0
