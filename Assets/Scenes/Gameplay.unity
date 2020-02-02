@@ -357,10 +357,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symbolRenderer: {fileID: 1110691041}
   symbolDisplayer: {fileID: 2080569788}
+  countDown: 1
   timerText:
   - {fileID: 6933409900865101025}
   - {fileID: 1873529701}
-  startTime: 0
   leftSprites:
   - {fileID: 1873529700}
   - {fileID: 1873529699}
@@ -1782,12 +1782,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 191087676}
+      objectReference: {fileID: 232730393}
     - target: {fileID: 6933409900075816269, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 232730393}
+      objectReference: {fileID: 191087676}
     - target: {fileID: 6933409900075816269, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -1796,12 +1796,12 @@ PrefabInstance:
     - target: {fileID: 6933409900075816269, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Reset
+      value: FinalizeSymbol
       objectReference: {fileID: 0}
     - target: {fileID: 6933409900075816269, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: FinalizeSymbol
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 6933409900075816269, guid: 12619ca0b5cfcfd498cdf3bf62f4b1cd,
         type: 3}
