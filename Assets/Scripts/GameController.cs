@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
@@ -8,6 +9,10 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private SymbolRenderer symbolRenderer;
     [SerializeField] private SymbolDisplayer symbolDisplayer;
+    
+    [SerializeField] private GameObject[] leftSprites;
+    [SerializeField] private GameObject[] rightSprites;
+    
     Texture2D currentStrokeTexture;
     public void GotToScene(int scene){
         SceneManager.LoadScene(scene);
