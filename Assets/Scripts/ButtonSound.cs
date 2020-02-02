@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ButtonSound : MonoBehaviour
@@ -20,7 +21,7 @@ public class ButtonSound : MonoBehaviour
         button.onClick.AddListener(() => PlaySound());
     }
 
-void PlaySound()
+public void PlaySound()
 {
     source.PlayOneShot(sound);
-}
+}}
