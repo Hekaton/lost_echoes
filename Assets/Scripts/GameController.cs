@@ -14,16 +14,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject[] rightSprites;
     
     Texture2D currentStrokeTexture;
+    int currentIndex = 0;
     public void GotToScene(int scene){
         SceneManager.LoadScene(scene);
     }
     
-    void Start(){
+    void Awake(){
         SymbolRenderer.dataRendered += FinalizeSymbol_step2;
-        currentStrokeTexture = symbolDisplayer.currentTexture;
     }
     
     public void FinalizeSymbol(){
+        currentStrokeTexture = symbolDisplayer.currentTexture;
         symbolRenderer.GrabTexture(); // will fire async dataRendered event
     }
     
@@ -33,6 +34,10 @@ public class GameController : MonoBehaviour
             currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
             canvas
         );
+        
+        leftSprites[currentIndex].GetComponent<Image>().image =
+        rightSprites[currentIndex].GetComponent<Image>().image = currentStrokeTexture;
+        
         
         Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
     }
