@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject[] leftSprites;
     [SerializeField] private GameObject[] rightSprites;
     
+    public static float[] scores = new float[10];
+    
     Texture2D currentStrokeTexture;
     int currentIndex = 0;
     public void GotToScene(int scene){
@@ -40,7 +42,6 @@ public class GameController : MonoBehaviour
         }
         
         var remainingTime = 10 + startTime - Time.time;
-        Debug.LogFormat("Remaining time: {0}", remainingTime);
         if(remainingTime < 0) {
             GotToScene(3);
             gameObject.SetActive(false);
@@ -54,16 +55,20 @@ public class GameController : MonoBehaviour
     }
     
     public void FinalizeSymbol(){
-        currentStrokeTexture = symbolDisplayer.currentTexture;
-        symbolRenderer.GrabTexture(); // will fire async dataRendered event
+        if(currentIndex < 10){
+            currentStrokeTexture = symbolDisplayer.currentTexture;
+            symbolRenderer.GrabTexture(); // will fire async dataRendered event
+        }
     }
         
     void FinalizeSymbol_step2(Color[] canvas){
-         
-        var result = Grid2DUtil.CompareGrid(
-            currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
-            canvas
-        );
+        var result = Random.Range(0,100);
+        // var result = Grid2DUtil.CompareGrid(
+        //     currentStrokeTexture.GetPixels(0, 0, currentStrokeTexture.width, currentStrokeTexture.height),
+        //     canvas
+        // );
+        // Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
+        scores[currentIndex] = result;
         
         var img = Sprite.Create(currentStrokeTexture, new Rect(0, 0, 1024, 1024), new Vector2(0.5f, 0.5f), 100, 0, SpriteMeshType.FullRect);
         
@@ -72,14 +77,15 @@ public class GameController : MonoBehaviour
         
         var remainingTime = Time.time - startTime;
         startTime += 10;
+    
+        symbolDisplayer.Next();
+        
         currentIndex++;
         
-        Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
-        
-        if(currentIndex < 10){
-            symbolDisplayer.Next();
-        } else {
-            GotToScene(4);
+        if(currentIndex >= 10) {
+            Debug.Log("Ending game!");
+            Time.timeScale = 0;
+            StartCoroutine(WaitThenFinish(1));
         }
     }
     
@@ -89,4 +95,14 @@ public class GameController : MonoBehaviour
     public void TogglePause(){
         // .
     }
+
+    IEnumerator WaitThenFinish(float seconds)
+    {
+        Debug.Log("... starting timer!");
+
+        yield return new WaitForSecondsRealtime(seconds);
+        Debug.Log("... timer done!!");
+        GotToScene(4);
+    }
+
 }
