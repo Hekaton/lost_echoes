@@ -12,7 +12,13 @@
 
             for (int i = 0; i < array_1.Length; i++)
             {
-                matchPixel += (1 - array_1[i].grayscale) - (1 - array_2[i].grayscale);
+                if (array_1[i].grayscale >= 0f && array_1[i].grayscale <= 0.9f)
+                {
+                    if (array_2[i].grayscale >= 0f && array_2[i].grayscale <= 0.9f)
+                    {
+                        matchPixel++;
+                    }
+                }
 
                 i++;
             }
