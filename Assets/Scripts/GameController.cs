@@ -70,14 +70,17 @@ public class GameController : MonoBehaviour
         leftSprites[currentIndex].GetComponent<Image>().sprite = img;
         rightSprites[currentIndex].GetComponent<Image>().sprite = img;
         
-        currentIndex++;
         var remainingTime = Time.time - startTime;
         startTime += 10;
-        
+        currentIndex++;
         
         Debug.LogFormat("Got a result of {0}%", Mathf.FloorToInt((float) result * 100));
         
-        symbolDisplayer.Next();
+        if(currentIndex < 10){
+            symbolDisplayer.Next();
+        } else {
+            GotToScene(4);
+        }
     }
     
     public void MainMenu(){
