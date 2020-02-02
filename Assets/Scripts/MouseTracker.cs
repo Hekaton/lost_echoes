@@ -12,6 +12,7 @@ public class MouseTracker : MonoBehaviour
     
     private GameObject currentInk;
     private bool isDrawing = false;
+    private List<GameObject> lines = new List<GameObject>();
     
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class MouseTracker : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) {
             // create new ink
             currentInk = GameObject.Instantiate(inkSource, mousePos, Quaternion.identity);
+            lines.Add(currentInk);
             
         } else if(Input.GetMouseButtonUp(0)) {
             // unbind ink
@@ -41,6 +43,13 @@ public class MouseTracker : MonoBehaviour
             } else {
                 Debug.LogWarning("Could not get a SymbolRenderer Component");
             }
+        }
+    }
+    
+    public void Reset(){
+        foreach (var line in lines)
+        {
+            GameObject.Destroy(line);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -27,10 +27,9 @@ public class SymbolRenderer : MonoBehaviour
     public void OnPostRender(){
         if(isRendering){
             isRendering = false;
+            var pixels = GetPixels();
+            dataRendered(pixels);
         }
-        
-        var pixels = GetPixels();
-        dataRendered(pixels);
     }
     
     public Color[] GetPixels(){
@@ -39,6 +38,6 @@ public class SymbolRenderer : MonoBehaviour
     }
     
     private float[] colorToGrayscale(Color[] colors){
-        return colors.Select(c => c.grayscale < 0.5f ? 1f : 0f).ToArray();
+        return colors.Select(c => c.grayscale < 0.85f ? 1f : 0f).ToArray();
     }
 }
