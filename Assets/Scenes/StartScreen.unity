@@ -615,7 +615,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
 --- !u!224 &303177635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1235,7 +1235,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!224 &1064168578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1463,6 +1463,8 @@ MonoBehaviour:
   timerText: []
   leftSprites: []
   rightSprites: []
+  liveScores: []
+  finalScore: {fileID: 0}
 --- !u!4 &1281413495
 Transform:
   m_ObjectHideFlags: 0

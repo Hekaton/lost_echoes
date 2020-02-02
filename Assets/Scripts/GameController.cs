@@ -31,6 +31,11 @@ public class GameController : MonoBehaviour
     }
     
     void Start(){
+        for (int i = 1; i < Display.displays.Length; i++)
+        {
+            Display.displays[i].Activate();
+        }
+        
         Debug.Log("START!");
         currentIndex = 0;
         startTime = Time.time;
