@@ -189,7 +189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Dmitri Kolychev\r\n \r\n\n\n\n\nMaxime St-Pierre\r\n\n\n\n\n \r\n\nIsabelle
+  m_Text: "Dmitri Kolytchev\r\n \r\n\n\n\n\nMaxime St-Pierre\r\n\n\n\n\n \r\n\nIsabelle
     Tremblay\r\n\r\n\n\n\n\n\nMusic from https://filmmusic.io\r\n\n\"Eighties Action\",
     \"Voice Over Under\" and \"Unwritten Return\" \nby Kevin MacLeod (https://incompetech.com)\r\n\nLicense:
     CC BY (http://creativecommons.org/licenses/by/4.0/)\r\n \r\n\n\n\n\n\nZapslat
@@ -235,6 +235,7 @@ MonoBehaviour:
   symbolDisplayer: {fileID: 0}
   countDown: 0
   timerText: []
+  timePerSymbol: 30
   leftSprites: []
   rightSprites: []
   liveScores: []
