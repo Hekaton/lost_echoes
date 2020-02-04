@@ -4,3 +4,14 @@
 *.dll filter=lfs diff=lfs merge=lfs -text
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.png filter-lfs diff-lfs merge=lfs -text
+Assets/Sprites/SFX/4570-unwritten-return-by-kevin-macleod.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/4594-voice-over-under-by-kevin-macleod.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/4616-werq-by-kevin-macleod.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/GENERIC_zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_008_40736.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/zapsplat_multimedia_game_tone_retro_classic_vintage_positive_001_43871.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/3703-eighties-action-by-kevin-macleod.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/DONE_zapsplat_multimedia_game_tone_bright_positive_002_44875.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/REDO_zapsplat_multimedia_game_sound_tuned_percussion_detuned_tone_generic_010_40762.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/START_zapsplat_multimedia_game_sound_tone_button_select_menu_sci_fi_013_40741.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/Scan_complete_for_repairzapsplat_science_fiction_computer_voice_says_scan_complete_30839.mp3 filter=lfs diff=lfs merge=lfs -text
+Assets/Sprites/SFX/WRONG_zapsplat_multimedia_game_sound_classic_1_up_003_41734.mp3 filter=lfs diff=lfs merge=lfs -text
